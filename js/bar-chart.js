@@ -84,7 +84,13 @@ function createBarChart() {
         .attr("y", d => yScale(d.GDP_per_Capita))
         .attr("width", barWidth)
         .attr("height", d => height - yScale(d.GDP_per_Capita))
-        .attr("fill", d => (d.country === "Japan") ? "steelblue" : "orange");
+        .attr("fill", d => {
+            if (d.country === "Japan") return "#E69F00" 
+            if (d.country === "Korea") return "#56B4E9" 
+            if (d.country === "Indonesia") return "#009E73" 
+            if (d.country === "China") return "#F0E442" 
+            else return "#0072B2"
+        });
 
     // Add legend (you can customize this)
     const legend = svg.append("g")
@@ -93,21 +99,55 @@ function createBarChart() {
     legend.append("rect")
         .attr("width", 20)
         .attr("height", 20)
-        .attr("fill", "steelblue");
+        .attr("fill", "#E69F00");
 
     legend.append("text")
         .attr("x", 30)
         .attr("y", 10)
-        .text("Japan");
+        .text("Jpn");
 
     legend.append("rect")
         .attr("width", 20)
         .attr("height", 20)
         .attr("x", 90)
-        .attr("fill", "orange");
+        .attr("fill", "#56B4E9");
 
     legend.append("text")
         .attr("x", 120)
         .attr("y", 10)
-        .text("Korea");
+        .text("Kor");
+
+    legend.append("rect")
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("y", 30)
+        .attr("fill", "#009E73");
+
+    legend.append("text")
+        .attr("x", 30)
+        .attr("y", 40)
+        .text("Ind");
+
+    legend.append("rect")
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("x", 90)
+        .attr("y", 30)
+        .attr("fill", "#F0E442");
+
+    legend.append("text")
+        .attr("x", 120)
+        .attr("y", 40)
+        .text("Chn");
+
+    legend.append("rect")
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("y", 60)
+        .attr("fill", "#0072B2");
+
+    legend.append("text")
+        .attr("x", 30)
+        .attr("y", 70)
+        .text("Sing");
 }
