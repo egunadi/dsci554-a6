@@ -13,14 +13,14 @@ function createScatterplot() {
         .attr("transform", "translate(" + marginBubble.left + "," + marginBubble.top + ")");
 
     // Load data from JSON file
-    d3.json("data/population.json").then(function(bubbleChartData) {
+    d3.json("data/population.json").then(function(populationData) {
         // Add padding to the X-axis scale
         var xScaleBubble = d3.scaleLinear()
             .domain([1970, 2020]) // Set the year range with padding
             .range([0, widthBubble]);
 
         var yScaleBubble = d3.scaleLinear()
-            .domain([0, d3.max(bubbleChartData, function (d) { return d.Population; }) * 1.5])
+            .domain([0, d3.max(populationData, function (d) { return d.Population; }) * 1.5])
             .range([heightBubble, 0]);
 
         // Define the tick values for the X-axis
@@ -37,7 +37,7 @@ function createScatterplot() {
             .call(d3.axisLeft(yScaleBubble).tickFormat(d3.format(".2s")));
 
         var circles = svgBubble.selectAll("circle")
-            .data(bubbleChartData)
+            .data(populationData)
             .enter()
             .append("circle");
 
