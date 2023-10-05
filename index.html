@@ -13,7 +13,7 @@
     <script src="js/scatterplot.js"></script>
     <script src="js/bar-chart.js"></script>
     <script src="js/table.js"></script>
-    <script src="js/world-map.js"></script>
+    <script src="js/line-chart.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -61,8 +61,8 @@
             <div class="col-md-6"> <!-- Make each card take up half of the row -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><a href="world-map.html">Relative Populations (Bubble Area) in 2020</a></h5>
-                        <div class="world-map" id="world-map"></div>
+                        <h5 class="card-title"><a href="line-chart.html">Relative Populations (Bubble Area) in 2020</a></h5>
+                        <div class="line-chart" id="line-chart"></div>
                     </div>
                 </div>
             </div>
@@ -74,14 +74,14 @@
         createScatterplot();
         createBarChart();
         createTable();
-        createWorldMap();
+        createLineChart();
 
         // Handle window resize to update chart dimensions
         window.addEventListener("resize", function () {
             createScatterplot();
             createBarChart();
             createTable();
-            createWorldMap();
+            createLineChart();
         });
     </script>
 

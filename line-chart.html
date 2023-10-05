@@ -10,7 +10,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://d3js.org/topojson.v3.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/world-map.js"></script>
+    <script src="js/line-chart.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -24,12 +24,12 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Relative Populations (Bubble Area) in 2020</h5>
-                    <div class="world-map" id="world-map"></div>
+                    <div class="line-chart" id="line-chart"></div>
                 </div>
             </div>
         </div>
         <div class="chart-container">
-            <div id="world-map" class="chart"></div>
+            <div id="line-chart" class="chart"></div>
             <div class="mt-4 text-left">
                 <a href="index.html" class="btn btn-primary btn-sm">Back to Home</a>
             </div>
@@ -37,11 +37,11 @@
     </div>
     <script>
         // Initial chart creation
-        createWorldMap();
+        createLineChart();
 
         // Handle window resize to update chart dimensions
         window.addEventListener("resize", function () {
-            createWorldMap();
+            createLineChart();
         });
     </script>
 
