@@ -13,7 +13,7 @@ function createBarChart() {
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
     // Load data from JSON file
-    d3.json("../data/gdp_per_capita.json").then(function(data) {
+    d3.json("data/gdp_per_capita.json").then(function(data) {
         // Sort data by Year in ascending order
         data.sort((a, b) => a.Year - b.Year);
 
