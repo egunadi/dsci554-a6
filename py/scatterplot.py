@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
 
-def export_population_2020_circles():
+def export_population():
     population_filepath = '../data/population.original.csv'
     
     population_df = pd.read_csv(population_filepath, delimiter=',', encoding='utf-8')
@@ -21,27 +20,13 @@ def export_population_2020_circles():
     population_df = population_df_japan.merge(population_df_korea, on='Year(s)')
     population_df = population_df.rename(columns={'Year(s)': 'Year'})
     
-    
     population_df_unpivot = pd.melt(population_df, id_vars='Year', value_vars=['Japan', 'Korea'])
     population_df_unpivot = population_df_unpivot.rename(columns={'variable': 'Country', 'value': 'Population'})
     
-    circle_df = population_df_unpivot[population_df_unpivot['Year'].isin([2020])]
+    population_df_unpivot = population_df_unpivot[(population_df_unpivot['Year'] >= 1970)
+                                                    & (population_df_unpivot['Year'] <= 2020)]
     
-    circle_df['radius'] = np.sqrt(circle_df['Population']) / 10
-    
-    def latitude(country):
-      return 36.2048 if country == 'Japan' else 35.9078
-    
-    circle_df['lat'] = circle_df['Country'].apply(latitude)
-    
-    def longitude(country):
-      return 138.2529 if country == 'Japan' else 127.7669
-    
-    circle_df['lon'] = circle_df['Country'].apply(longitude)
-    
-    circle_df = circle_df[['Country', 'radius', 'lat', 'lon']]
-    
-    circle_df.to_json('../data/population_2020_circles.json', orient='records')
+    population_df_unpivot.to_json('../data/population.json', orient='records')
 
 if __name__ == '__main__':
-    export_population_2020_circles()
+    export_population()
